@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Banner;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Http\Requests\StorePostRequest;
 use App\Post;
+use App\Product;
+use http\Client\Request;
 
 
 class PostController extends Controller
@@ -21,6 +24,12 @@ class PostController extends Controller
     {
 
         return view('admin.post.create');
+    }
+
+    public function edit(Post $post)
+    {
+
+        return view('admin.post.edit', compact('post'));
     }
 
     public function store(StorePostRequest $request)
@@ -51,35 +60,51 @@ class PostController extends Controller
         return strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $string)));
     }
 
-    public function edit(Product $product)
-    {
-        abort_unless(\Gate::allows('product_edit'), 403);
 
-        return view('admin.products.edit', compact('product'));
+
+    public function update(Requests\UpdatePostRequest $request)
+    {
+        $post = Post::where('id',$request->id)->first();
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $post->status = $request->status;
+        $post->seo_url = $this->convert_slug($request->title);
+        $post->keywords = $request->keywords;
+        $post->content = $request['content'];
+        $post->content = isset($request->is_top)?$request->is_top:0;
+        $post->type = $request->type;
+        $post->status = isset($request->status)?$request->status:0;
+
+        if(isset($request->image) && !empty($request->image)){
+            $file = $request->image;
+            $post->image = convert_slug($request->title).'-'.time().'.'.$file->getClientOriginalExtension();
+            $file->move('upload/post', $post->image);
+        }
+        if ($post->save()){
+            return redirect()->route('admin.post.index');
+        }
+        return redirect()->route('admin.post.edit',$request->id);
+
     }
 
-    public function update(UpdateProductRequest $request, Product $product)
+    public function showPost(\Illuminate\Http\Request $re)
     {
-        abort_unless(\Gate::allows('product_edit'), 403);
-
-        $product->update($request->all());
-
-        return redirect()->route('admin.products.index');
+        $post = Post::where('id',$re->id)->first();
+        $post->status =1;
+        $post->save();
+        return back();
     }
 
-    public function show(Product $product)
+    public function destroy(Post $post)
     {
-        abort_unless(\Gate::allows('product_show'), 403);
-
-        return view('admin.products.show', compact('product'));
+        $post->delete();
+        return back();
     }
-
-    public function destroy(Product $product)
+    public function hide(\Illuminate\Http\Request $re)
     {
-        abort_unless(\Gate::allows('product_delete'), 403);
-
-        $product->delete();
-
+        $post = Post::where('id',$re->id)->first();
+        $post->status =0;
+        $post->save();
         return back();
     }
 

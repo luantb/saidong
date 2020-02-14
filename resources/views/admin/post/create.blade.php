@@ -71,23 +71,10 @@
                 <label for="is_top">Ghim top </label>
                 <input type="checkbox" id="is_top" name="is_top"  value="1" >
             </div>
-            <div class="form-group col-md-6 {{ $errors->has('post_relate') ? 'has-error' : '' }}">
-                <select id="example-getting-started" multiple="multiple" name="post_relate" class="form-control">
-                    <option value="cheese">Cheese</option>
-                    <option value="tomatoes">Tomatoes</option>
-                    <option value="mozarella">Mozzarella</option>
-                    <option value="mushrooms">Mushrooms</option>
-                    <option value="mushrooms">Mushrooms</option>
-                    <option value="mushrooms">Mushrooms</option>
-                    <option value="mushrooms">Mushrooms</option>
-                    <option value="mushrooms">Mushrooms</option>
-                    <option value="pepperoni">Pepperoni</option>
-                    <option value="onions">Onions</option>
-                </select>
-            </div>
+
 
             <div>
-                <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
+                <input class="btn btn-danger" type="submit" value="Lưu">
             </div>
         </form>
     </div>

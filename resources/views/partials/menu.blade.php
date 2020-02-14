@@ -44,12 +44,39 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item">
+            {{--<li class="nav-item">
                 <a href="{{ route("admin.products.index") }}" class="nav-link {{ request()->is('admin/products') || request()->is('admin/products/*') ? 'active' : '' }}">
                     <i class="fas fa-cogs nav-icon">
 
                     </i>
                     {{ trans('global.product.title') }}
+                </a>
+            </li>--}}
+            <li class="nav-item">
+                <a href="{{ route("admin.banner.index") }}" class="nav-link {{ request()->is('admin/banner') || request()->is('admin/banner/*') ? 'active' : '' }}">
+                    <i class="fa fa-picture-o" aria-hidden="true"></i>
+
+                    QL Banner
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route("admin.post.index") }}" class="nav-link {{ request()->is('admin/post') || request()->is('admin/post/*') ? 'active' : '' }}">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+
+                    QL Bài viết
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route("admin.post.index") }}" class="nav-link {{ request()->is('admin/post') || request()->is('admin/post/*') ? 'active' : '' }}">
+                    <i class="fa fa-building-o" aria-hidden="true"></i>
+
+                    QL Trang chủ
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route("admin.post.index") }}" class="nav-link {{ request()->is('admin/post') || request()->is('admin/post/*') ? 'active' : '' }}">
+                    <i class="fa fa-reply" aria-hidden="true"></i>
+                    QL Báo giá
                 </a>
             </li>
             <li class="nav-item">

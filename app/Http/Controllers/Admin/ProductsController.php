@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyProductRequest;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Post;
 use App\Product;
 
 class ProductsController extends Controller
@@ -35,11 +36,9 @@ class ProductsController extends Controller
         return redirect()->route('admin.products.index');
     }
 
-    public function edit(Product $product)
+    public function edit(Post $post)
     {
-        abort_unless(\Gate::allows('product_edit'), 403);
-
-        return view('admin.products.edit', compact('product'));
+        return view('admin.post.edit', compact('post'));
     }
 
     public function update(UpdateProductRequest $request, Product $product)

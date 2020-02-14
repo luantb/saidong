@@ -3,15 +3,15 @@
 @can('product_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.post.create") }}">
-                Thêm bài viết
+            <a class="btn btn-success" href="{{ route("admin.banner.create") }}">
+                Thêm Banner
             </a>
         </div>
     </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        Danh sách bài viết
+        Danh sách Banner
     </div>
 
     <div class="card-body">
@@ -19,19 +19,19 @@
             <table class=" table table-bordered table-striped table-hover datatable">
                 <thead>
                     <tr>
+                        <th width="10">
 
-                        <th>
-                            Tiêu đề
                         </th>
                         <th>
-                            Mô tả
+                            Tên
                         </th>
                         <th>
                             Ảnh
                         </th>
 
+
                         <th>
-                            Từ khóa
+                            Hiển thị
                         </th>
                         <th>
                             Thao tác
@@ -39,53 +39,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($posts as $key => $post)
-                        <tr data-entry-id="{{ $post->id }}">
-
+                    @foreach($banners as $key => $banner)
+                        <tr data-entry-id="{{ $banner->id }}">
                             <td>
-                                {{ $post->title ?? '' }}
+
                             </td>
                             <td>
-                                @if(strlen($post->image ) > 0 )
-                                    <img style="height: 100px;width: auto" src="{{url('/upload/post/'.$post->image)}}" alt="{{$post->image}}">
+                                {{ $banner->title ?? '' }}
+                            </td>
+                            <td>
+                                @if(strlen($banner->image ) > 0 )
+                                    <img style="height: 100px;width: auto" src="{{url('/upload/banner/'.$banner->image)}}" alt="{{$banner->image}}">
 
                                 @endif
-
-                            </td>
-                            <td>
-                                {{ $post->content ?? '' }}
                             </td>
 
                             <td >
-                                @if($post->status ==1 )
+                                @if($banner->status ==1 )
                                     <span class="btn btn-xs btn-success">Đang hiển thị</span>
                                 @else
                                     <span class="btn btn-xs btn-danger">Đang ẩn</span>
-                                @endif
+                                 @endif
                             </td>
                             <td>
-
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.post.edit', $post->id) }}">
+                                    <a class="btn btn-xs btn-info" href="{{ route('admin.banner.edit', $banner->id) }}">
                                         Sửa
                                     </a>
-                                    <form action="{{ route('admin.post.destroy', $post->id) }}" method="POST" onsubmit="return confirm('Ban có chắc muốn xóa');" style="display: inline-block;">
+                                    <form action="{{ route('admin.banner.destroy', $banner->id) }}" method="POST" onsubmit="return confirm('Bạn có chắc muốn xóa');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="Xóa">
                                     </form>
-                                    @if($post->status ==0)
-                                    <form action="{{ route('admin.post.showPost', $post->id) }}" method="POST" onsubmit="return confirm('Ban có chắc muốn hiện bài viết này');" style="display: inline-block;">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="hidden" name="id" value="{{ $post->id }}">
-                                        <input type="submit" class="btn btn-xs btn-success" value="Hiện">
-                                    </form>
-                                    @else
-                                    <form action="{{ route('admin.post.hide', $post->id) }}" method="POST" onsubmit="return confirm('Ban có chắc muốn ẩn bài viết này');" style="display: inline-block;">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="hidden" name="id" value="{{ $post->id }}">
-                                        <input type="submit" class="btn btn-xs btn-warning" value="Ẩn">
-                                    </form>
-                                     @endif
                             </td>
 
                         </tr>
@@ -115,7 +99,7 @@
         return
       }
 
-      if (confirm('{{ trans('global.areYouSure') }}')) {
+      if (confirm('Bạn có chắc muốn xóa')) {
         $.ajax({
           headers: {'x-csrf-token': _token},
           method: 'POST',
