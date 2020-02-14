@@ -92,7 +92,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/bootstrap-multiselect.js ') }}"></script>
+    @yield('scripts')
     <script>
         $(function() {
   let copyButtonTrans = '{{ trans('global.datatables.copy') }}'
@@ -184,7 +184,7 @@
 });
 
     </script>
-    @yield('scripts')
+
 </body>
 
 </html>

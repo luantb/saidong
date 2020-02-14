@@ -49,8 +49,8 @@
                 @endif
             </div>
             <div class="form-group {{ $errors->has('content') ? 'has-error' : '' }}">
-                <label for="description">Nội dung</label>
-                <textarea id="description" name="content" class="form-control ">{{ old('content', isset($post) ? $post->content : '') }}</textarea>
+                <label for="content1">Nội dung</label>
+                <textarea id="content1" name="content" class="form-control ">{{ old('content', isset($post) ? $post->content : '') }}</textarea>
                 @if($errors->has('content'))
                     <em class="invalid-feedback">
                         {{ $errors->first('content') }}
@@ -93,12 +93,19 @@
     </div>
 </div>
 
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script>
+    CKEDITOR.replace( 'content1', {
+        filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
+        filebrowserImageBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Images') }}',
+        filebrowserFlashBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Flash') }}',
+        filebrowserUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
+        filebrowserImageUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
+        filebrowserFlashUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
+    } );
+</script>
 @endsection
-@section('script')
-    <script >
-            $(document).ready(function() {
-                $('#example-getting-started').multiselect();
-            });
+@section('scripts')
 
-    </script>
+
 @endsection

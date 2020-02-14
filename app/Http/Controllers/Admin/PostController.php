@@ -33,9 +33,9 @@ class PostController extends Controller
             'description' => $request->description,
             'keywords' => $request->keywords,
             'content' => $request['content'],
-            'is_top' => $request->is_top,
+            'is_top' => isset($request->is_top)?$request->is_top:0,
             'type' => $request->type,
-            'status' => $request->status,
+            'status' => isset($request->status)?$request->status:0,
             'image' => $imgaeName,
 
         );
