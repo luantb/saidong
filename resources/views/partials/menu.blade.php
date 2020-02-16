@@ -67,14 +67,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route("admin.post.index") }}" class="nav-link {{ request()->is('admin/post') || request()->is('admin/post/*') ? 'active' : '' }}">
+                <a href="{{ route("admin.landingPage.index") }}" class="nav-link {{ request()->is('admin/landingPage') || request()->is('admin/landingPage/*') ? 'active' : '' }}">
                     <i class="fa fa-building-o" aria-hidden="true"></i>
-
                     QL Trang chủ
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route("admin.post.index") }}" class="nav-link {{ request()->is('admin/post') || request()->is('admin/post/*') ? 'active' : '' }}">
+                <a href="{{ route("admin.clientRequest.index") }}" class="nav-link {{ request()->is('admin/clientRequest') || request()->is('admin/clientRequest/*') ? 'active' : '' }}">
                     <i class="fa fa-reply" aria-hidden="true"></i>
                     QL Báo giá
                 </a>

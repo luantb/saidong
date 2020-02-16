@@ -50,7 +50,7 @@ class PostController extends Controller
         );
         $a = $file->move('upload/post', $imgaeName);
             if ($a && Post::create($dataPost)){
-                return redirect()->route('admin.post');
+                return redirect()->route('admin.post.index');
             }
         return view('admin.post.create');
 

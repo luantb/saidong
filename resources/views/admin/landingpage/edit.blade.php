@@ -1,0 +1,215 @@
+@extends('layouts.admin')
+@section('content')
+    <div class="card">
+        <div class="card-header">
+            Sửa panel
+        </div>
+        <div class="card-body">
+            <form action="{{ route("admin.test.store") }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
+                    <label for="name">Tiêu đề *</label>
+                    <input type="text" id="name" name="title" class="form-control" value="{{ old('title', isset($panel) ? $panel->title : '') }}">
+                    <input type="hidden" id="name" name="id" class="form-control" value="{{ $panel->id }}">
+                    @if($errors->has('title'))
+                        <em class="invalid-feedback">
+                            {{ $errors->first('title') }}
+                        </em>
+                    @endif
+                    <p class="helper-block">
+                        {{ trans('global.product.fields.name_helper') }}
+                    </p>
+                </div>
+
+                <div class="form-group {{ $errors->has('menu_name') ? 'has-error' : '' }}">
+                    <label for="name">Tên menu</label>
+                    <input type="text" id="menu_name" name="menu_name" class="form-control" value="{{ old('menu_name', isset($panel) ? $panel->menu_name : '') }}">
+                    @if($errors->has('menu_name'))
+                        <em class="invalid-feedback">
+                            {{ $errors->first('menu_name') }}
+                        </em>
+                    @endif
+                    <p class="helper-block">
+                        {{ trans('global.product.fields.name_helper') }}
+                    </p>
+                </div>
+
+
+                <div class="form-group {{ $errors->has('order_number') ? 'has-error' : '' }}">
+                    <label for="name">Thứ tự hiển thị</label>
+                    <input type="text" id="name" name="order_number" class="form-control" value="{{ old('order_number', isset($panel) ? $panel->order_number : '') }}">
+                    @if($errors->has('order_number'))
+                        <em class="invalid-feedback">
+                            {{ $errors->first('order_number') }}
+                        </em>
+                    @endif
+                    <p class="helper-block">
+                        {{ trans('global.product.fields.name_helper') }}
+                    </p>
+                </div>
+
+
+
+
+
+
+                <div class="form-group ">
+                    <label for="type">Vi trí hiển thị  </label>
+                </div>
+                <div class="form-group {{ $errors->has('position') ? 'has-error' : '' }}">
+                    <div class="form-control">
+                        <input type="radio" id="imgtext" name="position"   value="1" {{$panel->position == 1?'checked':''}}  >
+                        <label for="imgtext">ảnh ( trái ) - chữ ( phải )</label>
+                    </div>
+                    <div class="form-control">
+                        <input type="radio" id="textImg" name="position"  value="2" {{$panel->position == 2?'checked':''}} >
+                        <label for="textImg">Chữ( trái ) - ảnh ( phải )</label>
+                    </div>
+                    <div class="form-control">
+                        <input type="radio" id="onlyText" name="position"  value="3" {{$panel->position == 3?'checked':''}}>
+                        <label for="onlyText">Chỉ chữ</label>
+                    </div>
+                    <div class="form-control">
+                        <input type="radio" id="textForm" name="position"  value="4" {{$panel->position == 4?'checked':''}} >
+                        <label for="textForm">Chữ ( trái ) - form ( phải )</label>
+                    </div>
+                    <div class="form-control">
+                        <input type="radio" id="panelOther" name="position"  value="0" {{$panel->position == 0?'checked':''}} >
+                        <label for="panelOther">Chính giữa</label>
+                    </div>
+
+                </div>
+                <div class="form-group ">
+                    <label for="type">Loại trang</label>
+                </div>
+                <div class="form-group {{ $errors->has('page_type') ? 'has-error' : '' }}">
+                    <div class="form-control">
+                        <input type="radio" id="onPage" name="page_type"   value="1"  {{$panel->page_type == 1?'checked':''}} >
+                        <label for="onPage">Chỉ hiển thị ở trang chủ</label>
+                    </div>
+                    <div class="form-control">
+                        <input type="radio" id="redirectPage" name="page_type"  value="2" {{$panel->page_type == 2?'checked':''}} >
+                        <label for="redirectPage">Chuyển hướng tới trang con</label>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="type">Loại Panel</label>
+                </div>
+                <div class="form-group {{ $errors->has('type') ? 'has-error' : '' }}">
+                    <div class="form-control">
+                        <input type="radio" id="typeText" name="type"   value="1" {{$panel->type == 1?'checked':''}} >
+                        <label for="typeText">Nội dung bằng chữ hoặc hình ảnh</label>
+                    </div>
+                    <div class="form-control">
+                        <input type="radio" id="typeNews" name="type"  value="2" {{$panel->type == 2?'checked':''}}  >
+                        <label for="typeNews">Danh sách 4 tin tức</label>
+                    </div>
+                    <div class="form-control">
+                        <input type="radio" id="typeProd" name="type"   value="3"  {{$panel->type == 3?'checked':''}} >
+                        <label for="typeProd">Danh sách 3 sản phẩm</label>
+                    </div>
+                    <div class="form-control">
+                        <input type="radio" id="typeForm" name="type"  value="4"  {{$panel->type == 4?'checked':''}}  >
+                        <label for="typeForm">Form nhận yêu cầu của khách hàng</label>
+                    </div>
+                </div>
+
+                <div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
+                    <label for="name">Ảnh  </label>
+                    <em class="text-success">Nếu Loại Panel là ds sản phẩm ,ds tin tức , form thông tin thì không cần chọn ảnh  </em>
+                    <input type="file" id="name"  name="image[]" class="form-control" value="{{ old('image', isset($panel) ? $panel->image : '')  }} " multiple >
+                    @if($errors->has('image'))
+                        <em class="invalid-feedback">
+                            {{ $errors->first('image') }}
+                        </em>
+                    @endif
+                    @if(count($panel->gallerys) >0)
+                        @foreach($panel->gallerys as $gallery )
+                            <span id="image_extra_{{$gallery->id}}">
+                                <img src="{{url('/upload/gallery/'.$gallery->name)}}" alt="" height="100px" width="200px" >
+                                <a href="javascript:;" onclick="deleteImage({{$panel->id}},{{$gallery->id}})">
+                                    <span class="btn btn-xs btn-danger" >Xóa</span>
+                                </a>
+                            </span>
+                        @endforeach
+                    @endif
+                </div>
+
+                <div class="form-group {{ $errors->has('content') ? 'has-error' : '' }}">
+                    <label for="content1">Nội dung</label>
+                    <em class="text-success">Nếu Loại Panel là ds sản phẩm ,ds tin tức , form thông tin thì không cần nhập nội dung  </em>
+                    <textarea id="content1" name="content" class="form-control ">{{ old('content', isset($panel) ? $panel->content : '') }}</textarea>
+                    @if($errors->has('content'))
+                        <em class="invalid-feedback">
+                            {{ $errors->first('content') }}
+                        </em>
+                    @endif
+                </div>
+
+                <div class="form-group {{ $errors->has('status') ? 'has-error' : '' }}">
+                    <label for="status">Hiển thị </label>
+                    <input type="checkbox" id="status" name="status"  value="1" {{$panel->status == 1?'checked':''}}  }>
+                </div>
+
+                <div class="form-group {{ $errors->has('in_menu') ? 'has-error' : '' }}">
+                    <label for="in_menu">Menu chính </label>
+                    <input type="checkbox" id="in_menu" name="in_menu"  value="1"   {{$panel->in_menu == 1?'checked':''}}  }>
+                </div>
+
+
+                <div>
+                    <input class="btn btn-danger" type="submit" value="Lưu">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script>
+        CKEDITOR.replace( 'content1', {
+            filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
+            filebrowserImageBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Images') }}',
+            filebrowserFlashBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Flash') }}',
+            filebrowserUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
+            filebrowserImageUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
+            filebrowserFlashUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
+        } );
+    </script>
+    <script type="text/javascript">
+        function deleteImage(p_id ,i_id){
+            if(confirm("Bạn có chắc muốn xóa ảnh?")){
+
+                $.ajax({
+                    type:'POST',
+                    url:'{{ route('admin.landingPage.deleteImage') }}',
+                    data:{p_id:p_id, i_id:i_id,_token:'{{ csrf_token() }}'},
+                    success:function(data){
+                        alert(data.mgs);
+                        if(data.status == 'success'){
+                            $('#image_extra_'+i_id).html('');
+                        }
+                    }
+
+                });
+
+            }
+        }
+        $(document).ready(function() {
+
+            $(".btn-success").click(function(){
+                var html = $(".clone").html();
+                $(".increment").after(html);
+            });
+
+            $("body").on("click",".btn-danger",function(){
+                $(this).parents(".control-group").remove();
+            });
+
+        });
+
+    </script>
+@endsection
+@section('scripts')
+
+
+@endsection

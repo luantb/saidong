@@ -19,9 +19,7 @@
             <table class=" table table-bordered table-striped table-hover datatable">
                 <thead>
                     <tr>
-                        <th width="10">
 
-                        </th>
                         <th>
                             Tên
                         </th>
@@ -41,9 +39,6 @@
                 <tbody>
                     @foreach($banners as $key => $banner)
                         <tr data-entry-id="{{ $banner->id }}">
-                            <td>
-
-                            </td>
                             <td>
                                 {{ $banner->title ?? '' }}
                             </td>
@@ -67,6 +62,7 @@
                                     </a>
                                     <form action="{{ route('admin.banner.destroy', $banner->id) }}" method="POST" onsubmit="return confirm('Bạn có chắc muốn xóa');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="id" value="{{ $banner->id }}">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="Xóa">
                                     </form>

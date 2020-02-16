@@ -1,0 +1,116 @@
+.header {
+    background: #03363a;
+}
+.mfp-close{
+    display: none;
+}
+.navbar-custom {
+    
+    border: none;
+    border-radius: 0!important  ;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 15px;
+    align-items: center;
+}
+.nav-logo img{
+    width: 100px;
+    height: 100px;
+}
+.nav-menu ul{
+    display: flex;
+    flex-flow: wrap;
+    justify-content: flex-end;
+    margin-bottom: 0px;
+
+}
+.nav-menu ul li{
+    padding: 10px;
+}
+.nav-menu li:last-child {
+    padding-right: 0 !important;
+}
+.nav-menu ul li a{
+    font-weight: 700;
+    color: #fff;
+    font-size: 13px;
+}
+.nav-menu ul li a:hover{
+    text-decoration: none;
+    cursor: pointer;
+}
+.menu-button{
+    display: none;
+}
+/* responsive */
+@media screen and (max-width: 849px) {
+    .navbar-custom {
+        padding: 0px;
+    }
+    .menu-button {
+        background: #ff8605;
+        padding: 9px;
+        border-radius: 5px;
+        display: block;
+        cursor: pointer;
+    }
+    .nav-menu {
+        display: none;
+    }
+    .nav-menu ul {
+        display: unset;
+    }
+    .nav-logo {
+        margin: 0 auto;
+    }
+    .header .container {
+        margin: 0px;
+    }
+    .header{
+        position: relative;
+    }
+    .nav-menu.menu-left{
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        display: block!important;
+        z-index: 2;
+        width: 260px;
+        background-color: rgba(255,255,255,0.95);
+        left: 0;
+        padding: 30px 0px;
+        /* overflow-y: auto;
+        overflow-x: hidden; */
+        /* -webkit-overflow-scrolling: touch; */
+        transition: transform 0.2s;
+        /* -ms-transform: translateX(-270px); */
+        /* transform: translateX(-270px); */
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    }
+    .nav-menu.menu-left li {
+       
+        border-bottom: 1px solid #ececec;
+        padding: 15px;
+    }
+    .nav-menu.menu-left li a{
+        color: rgba(102,102,102,0.85);
+    }
+    .background-nav.active{
+        position: fixed;
+        width: 100%;
+        background: rgba(225,225,225,0.7);
+        height: 100vh;
+        top: 0;
+        z-index: 5;
+        bottom: 0;
+    }
+    .mfp-close.active{
+        display: block;
+        position: fixed;
+        font-size: 34px;
+        right: 0;
+        border: none;
+        line-height: 1;
+        background: none;
+    }
+}

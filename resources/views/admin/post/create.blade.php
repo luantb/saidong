@@ -82,6 +82,7 @@
 
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script>
+
     CKEDITOR.replace( 'content1', {
         filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
         filebrowserImageBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Images') }}',

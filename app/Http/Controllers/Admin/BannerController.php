@@ -65,5 +65,11 @@ class BannerController extends Controller
         return redirect()->route('admin.banner.edit',$request->id);
 
     }
+    public function destroy(Request $request)
+    {
+        $baner = Banner::where('id',$request->id)->first();
+        $baner->delete();
+        return back();
+    }
 
 }

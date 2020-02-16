@@ -24,10 +24,10 @@
                             Tiêu đề
                         </th>
                         <th>
-                            Mô tả
+                            Ảnh
                         </th>
                         <th>
-                            Ảnh
+                            Mô tả
                         </th>
 
                         <th>
@@ -53,7 +53,7 @@
 
                             </td>
                             <td>
-                                {{ $post->content ?? '' }}
+                                {!!$post->description !!}
                             </td>
 
                             <td >

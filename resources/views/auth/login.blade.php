@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.none')
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-8">
@@ -15,7 +15,7 @@
                         <h1>
                             <div class="login-logo">
                                 <a href="#">
-                                    {{ trans('global.site_title') }}
+                                    {{ $setting->project_name }}
                                 </a>
                             </div>
                         </h1>

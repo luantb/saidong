@@ -1,0 +1,94 @@
+.scroll-to-bullets {
+    right: 0;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    z-index: 999;
+    max-height: 100vh;
+    overflow: hidden;
+    position: fixed;
+}
+.scroll-to-bullets a {
+    display: block;
+    border: 3px solid transparent;
+    background-color: #446084;
+    margin: 10px 15px;
+    width: 15px;
+    height: 15px;
+    border-radius: 30px;
+    transition: all .3s;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+}
+.scroll-to-bullets a.active {
+    border-color: #446084;
+    background-color: #FFF;
+}
+
+#button {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 30px;
+  border: 2px solid #000;
+  right: 30px;
+  transition: background-color .3s, opacity .5s, visibility .5s;
+  z-index: 1000;
+}
+#button::after {
+  content: "\f077";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1.5em;
+  line-height: 42px;
+  color: #000;
+}
+#button:hover {
+  cursor: pointer;
+  background-color: #333;
+  text-decoration: none;
+}
+#button:hover::after {
+  text-decoration: none;
+  color: #fff;
+}
+#button:active {
+  background-color: #555;
+}
+#button.show {
+  opacity: 1;
+  visibility: visible;
+}
+.fix_tel{
+  position: fixed;
+  bottom: 15px;
+  left: 5px;
+  background: #eee;
+  border: solid 1px #ccc;
+  display: flex;
+  border-radius: 28px;
+  padding: 3px 20px 3px 5px;
+}
+.tel {
+  color: red;
+  font-size: 24px;
+  font-weight: 700;
+}
+.ring-alo-ph-img-circle {
+  background: red;
+  padding: 1px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.ring-alo-ph-img-circle:hover {
+  background: #baf5a7;
+}
+.ring-alo-phone img{
+  width: 30px;
+  height: 30px;
+}
+.tel .fone{
+  margin: 0;
+}

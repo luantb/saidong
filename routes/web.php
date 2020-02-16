@@ -1,8 +1,13 @@
 <?php
 
-Route::redirect('/', '/login');
+Route::get('/', 'HomeController@index');
+Route::get('/tin-tuc', 'PostController@index');
+Route::get('/lien-he', 'HomeController@contact');
+Route::get('/tin-tuc/{slug}', 'PostController@view')->name('news.detail');
+Route::post('/home/sendRequest', 'HomeController@sendRequest')->name('home.sendRequest');
+//Route::redirect('/', '/home');
 
-Route::redirect('/home', '/admin');
+//Route::redirect('/home', '/admin');
 
 Auth::routes(['register' => false]);
 
@@ -19,6 +24,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('/banner/create', 'BannerController@create')->name('banner.create');
     Route::get('/banner/edit', 'BannerController@edit')->name('banner.edit');
     Route::post('/banner/store', 'BannerController@store')->name('banner.store');
+
+    Route::post('/landingPage/store', 'LandingPageController@store')->name('landingPage.store');
+    Route::post('/landingPage/store', 'LandingPageController@store')->name('test.store');
+    Route::get('/landingPage/edit/{id}', 'LandingPageController@edit')->name('landingPage.edit');
+    Route::get('/landingPage/destroy', 'LandingPageController@destroy')->name('test.destroy');
+    Route::post('/landingPage/deleteImage', 'LandingPageController@deleteImage')->name('landingPage.deleteImage');
+    Route::get('/clientRequest/{id}', 'clientRequest@edit')->name('landingPage.edit');
 
 
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
@@ -40,4 +52,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('products', 'ProductsController');
     Route::resource('banner', 'BannerController');
     Route::resource('post', 'PostController');
+    Route::resource('landingPage', 'LandingPageController');
+    Route::resource('home', 'HomeController');
+    Route::resource('clientRequest', 'ClientRequestController');
 });
